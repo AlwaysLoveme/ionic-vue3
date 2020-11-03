@@ -1,0 +1,7 @@
+{
+  "name": "jpushTest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
