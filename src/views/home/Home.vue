@@ -3,7 +3,7 @@
   <ion-page>
     <custom-navbar title="工作台" :bottom-border="false"></custom-navbar>
     <ion-content ref="content">
-      <ion-button @click="router.push({path: '/goods-list'})">navigate</ion-button>
+      <ion-button @click="router.push({path: '/goods-list'})">Refresh an InfiniteScroll</ion-button>
       <ion-button @click="file()">fileChoose</ion-button>
       <ion-button @click="router.push({path: '/image-cropper'})">imageCropper</ion-button>
       <p>
