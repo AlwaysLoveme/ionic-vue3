@@ -1,9 +1,12 @@
 import Router from '@/router';
 import Cropper from "cropperjs";
 import {useRoute} from 'vue-router';
-import {onMounted, reactive, ref} from "vue";
 import UploadImage from "@/api/uploadImage";
 import Emitter from 'tiny-emitter/instance';
+import {onMounted, reactive, ref} from "vue";
+
+
+
 function setImageCropperHeight() {
     const cropperNavHeight: HTMLElement = document.getElementById('cropper-nav') as HTMLElement;
     const cropperFooterHeight: HTMLElement = document.getElementById('cropper-footer') as HTMLElement;
@@ -13,6 +16,7 @@ function setImageCropperHeight() {
 export function cropperImage() {
     const route = useRoute();
     const imageSrc: any = ref('');
+
     const { path, aspectRatio, events} = route.query;
     imageSrc.value = path;
 
@@ -46,8 +50,8 @@ export function cropperImage() {
     }
 
     function uploadCropperImage() {
+        if (!cropperData) return;
         cropperData.toBlob(async (blob: Blob) => {
-            console.log(blob)
             const formData = new FormData();
             formData.append('type', 'goods');
             formData.append('upfile', blob, new Date().valueOf() + '.png');
@@ -55,7 +59,7 @@ export function cropperImage() {
             const {data, status} = await UploadImage.upload(formData);
             if (status) {
                 Router.back();
-                Emitter.on(events, data);
+                Emitter.emit(events, data);
             }
         })
     }

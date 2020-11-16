@@ -61,7 +61,7 @@ class CommonList {
     async finishInfiniteAndRefresh(elements: any, disabled: boolean = false) {
         elements.forEach((element: HTMLElement | any) => {
             element.complete();
-            // element.disabled = disabled;
+            element.disabled = disabled;
         });
     }
 }

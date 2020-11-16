@@ -16,7 +16,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {isPlatform} from '@ionic/vue';
-import {IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton} from '@ionic/vue';
 
 export default defineComponent({
   name: "CustomNavbar",
@@ -31,6 +30,7 @@ export default defineComponent({
       default: false,
     }
   },
+  // 沉浸式状态栏Header需要加入padding-top以此使内容能够正常显示
   directives: {
     overlay: {
       async mounted(el: HTMLElement) {
@@ -41,16 +41,5 @@ export default defineComponent({
       }
     }
   },
-  components: {
-    IonTitle,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonBackButton
-  },
 })
 </script>
-
-<style scoped lang="less">
-
-</style>

@@ -1,7 +1,8 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router';
-import vconsole from 'vconsole';
+import * as Eruda from 'eruda';
+import 'lib-flexible/flexible';
 import {IonicVue} from '@ionic/vue';
 import plugin from "@/utils/plugin";
 import customComponent from "@/components";
@@ -24,10 +25,9 @@ import '@ionic/vue/css/text-transformation.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import './theme/common.less';
+import './theme/common.scss';
 
-// new vconsole();
-
+Eruda.init();
 const app = createApp(App)
     .use(IonicVue, {
         rippleEffect: true,

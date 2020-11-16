@@ -1,3 +1,4 @@
+import MobileCode from "@/directive/mobileCode";
 import keyBoardOverlay from '@/directive/keyBoardOverlay';
 import {toastController, loadingController, alertController, actionSheetController} from '@ionic/vue'
 
@@ -40,6 +41,7 @@ const install = function (app: any) {
     }
 
     app.directive('keyboardOverlay', keyBoardOverlay);
+    app.directive(MobileCode.name, MobileCode);
     return app;
 }
 

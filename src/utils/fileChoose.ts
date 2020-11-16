@@ -1,4 +1,3 @@
-import App from '@/main';
 import router from "@/router";
 import {File} from "@ionic-native/file";
 import {actionSheetController} from '@ionic/vue';
@@ -14,7 +13,10 @@ interface ActionButton {
     role?: string;
     icon?: string;
 }
-
+export interface UploadResult {
+    url: string;
+    path: string;
+}
 class FileChoose {
 
     constructor() {
@@ -90,7 +92,6 @@ class FileChoose {
             correctOrientation: true,
             resultType: CameraResultType.Uri
         });
-        console.log(image.webPath, router);
         await router.push({
             path: '/image-cropper',
             query: {

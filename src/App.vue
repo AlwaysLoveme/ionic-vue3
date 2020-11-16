@@ -10,14 +10,9 @@ import Splash from '@/utils/splash';
 import { defineComponent } from 'vue';
 import Statusbar from '@/utils/statusbar';
 import BackButton from '@/utils/backButton';
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    IonApp,
-    IonRouterOutlet
-  },
   setup() {
     document.addEventListener('deviceready', function () {
       new Jpush();

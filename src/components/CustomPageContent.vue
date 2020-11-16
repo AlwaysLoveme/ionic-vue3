@@ -2,7 +2,8 @@
   <!--二次封装 ion-content 供需要刷新、分页加载的列表页 -->
   <ion-content>
     <template v-if="refresh">
-      <ion-refresher mode="md" slot="fixed" pull-min="100" pull-max="600" @ionRefresh="$emit('refresh')">
+      <ion-refresher slot="fixed" mode="md" pullMin="200" pullMax="800" pullFactor="0.5"
+                     @ionRefresh="$emit('refresh')">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
     </template>
@@ -10,8 +11,8 @@
     <slot></slot>
 
     <template v-if="infinite">
-      <ion-infinite-scroll mode="md" threshold="100px" @ionInfinite="$emit('infinite')">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      <ion-infinite-scroll threshold="20%" @ionInfinite="$emit('infinite')">
+        <ion-infinite-scroll-content loadingText="加载中..."></ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </template>
   </ion-content>
@@ -20,13 +21,6 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 // import { emit } from '@vue/reactivity';
-import {
-  IonContent,
-  IonRefresher,
-  IonInfiniteScroll,
-  IonRefresherContent,
-  IonInfiniteScrollContent
-} from '@ionic/vue';
 
 export default defineComponent({
   name: "CustomPageContent",
@@ -41,20 +35,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     }
-  },
-  components: {
-    IonContent,
-    IonRefresher,
-    IonInfiniteScroll,
-    IonRefresherContent,
-    IonInfiniteScrollContent
-  },
-  methods: {
-
   }
 })
 </script>
-
-<style scoped>
-
-</style>

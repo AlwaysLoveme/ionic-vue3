@@ -4,7 +4,7 @@
     <custom-navbar title="商品列表"></custom-navbar>
     <custom-page-content refresh infinite @refresh="getGoodsData(false)" @infinite="getGoodsData(true)">
       <ion-list>
-        <ion-item v-for="(item, index) of goodsData" :key="index" class="ion-margin-bottom"
+        <ion-item v-for="(item, index) of goodsData" :key="index" class="ion-margin-bottom ion-margin-top"
                   @click="router.push({path: '/login'})">
           <ion-avatar class="ion-margin-end">
             <img :src="item.main_image" alt="">
@@ -21,26 +21,16 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import {getGoodsList} from "./goods";
-import {useRouter, useRoute} from "vue-router";
+import {useRouter} from "vue-router";
+import { useBackButton } from '@ionic/vue';
 // import {getInstance} from "@/utils/getInstance";
-import {
-  IonPage,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonAvatar,
-} from '@ionic/vue';
 
 export default defineComponent({
   name: "GoodsList",
-  components: {
-    IonPage,
-    IonList,
-    IonItem,
-    IonAvatar,
-    IonLabel,
-  },
   setup() {
+    useBackButton(10, () => {
+      console.log('Another handler was called!');
+    });
     const router = useRouter();
     const { getGoodsData, goodsState, goodsData} = getGoodsList();
     return {router, goodsData, goodsState, getGoodsData}
@@ -48,6 +38,5 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="less">
-
+<style scoped lang="scss">
 </style>

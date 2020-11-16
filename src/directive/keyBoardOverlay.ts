@@ -30,7 +30,7 @@ const {Keyboard} = Plugins;
 const keyBoardOverlay = {
     async mounted(el: HTMLElement | any) {
         // 非native平台不执行任何操作
-        if (!isPlatform('hybrid')) return;
+        if (!isPlatform('hybrid') || isPlatform('ios')) return;
         // 这里延迟执行，否则有可能获取不到元素的offsetTop
         setTimeout(async () => {
             const ionContent: HTMLElement | any = getContent();
@@ -56,7 +56,7 @@ const keyBoardOverlay = {
         }, 200);
     },
     unmounted() {
-        Keyboard.removeAllListeners();
+        if (isPlatform('hybrid')) Keyboard.removeAllListeners();
     }
 }
 

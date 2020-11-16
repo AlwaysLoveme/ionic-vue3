@@ -6,9 +6,9 @@
       <div class="image-cropper" :style="{height: `calc(100vh - ${height}px)`}">
         <img :src="imageSrc" alt="" ref="imageElement">
       </div>
-      <ion-footer id="cropper-footer">
-        <ion-toolbar>
-          <ion-button @click="uploadCropperImage" class="ion-float-end" mode="md">确定</ion-button>
+      <ion-footer id="cropper-footer" class="ion-no-border">
+        <ion-toolbar class="ion-flex ion-justify-content-end">
+          <ion-button @click="uploadCropperImage" mode="md" expand="block">确定</ion-button>
         </ion-toolbar>
       </ion-footer>
     </ion-content>
@@ -18,17 +18,9 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import {cropperImage} from "./cropper";
-import {IonContent, IonPage, IonButton, IonFooter, IonToolbar} from '@ionic/vue';
 
 export default defineComponent({
   name: "Login",
-  components: {
-    IonPage,
-    IonButton,
-    IonFooter,
-    IonContent,
-    IonToolbar,
-  },
   setup() {
     const {imageSrc, cropper, imageElement, height, uploadCropperImage} = cropperImage();
     return {cropper, imageElement, imageSrc, height, uploadCropperImage}
@@ -36,7 +28,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 @import "~cropperjs/dist/cropper.min.css";
 
 .image-cropper {

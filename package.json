@@ -18,8 +18,8 @@
     "@ionic-native/file": "^5.29.0",
     "@ionic-native/file-transfer": "^5.29.0",
     "@ionic-native/media-capture": "^5.29.0",
-    "@ionic/vue": "^5.4.2",
-    "@ionic/vue-router": "^5.4.2",
+    "@ionic/vue": "^5.4.4",
+    "@ionic/vue-router": "^5.4.4",
     "axios": "^0.21.0",
     "cordova-plugin-camera": "^5.0.0",
     "cordova-plugin-device": "^2.0.3",
@@ -30,12 +30,12 @@
     "cordova-plugin-media-capture": "^3.0.3",
     "core-js": "^3.6.5",
     "cropperjs": "^2.0.0-alpha.1",
-    "less": "^3.12.2",
-    "less-loader": "^7.0.2",
+    "eruda": "^2.4.1",
+    "lib-flexible": "^0.3.2",
+    "sass-loader": "^10.1.0",
     "tiny-emitter": "^2.1.0",
-    "vconsole": "^3.3.4",
     "vue": "^3.0.2",
-    "vue-router": "^4.0.0-rc.1"
+    "vue-router": "^4.0.0-rc.3"
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
@@ -54,6 +54,8 @@
     "@vue/test-utils": "^2.0.0-0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "node-sass": "^5.0.0",
+    "px2rem-loader": "^0.1.9",
     "typescript": "^4.0.5",
     "vue-jest": "^5.0.0-0"
   },

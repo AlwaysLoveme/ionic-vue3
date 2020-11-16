@@ -1,51 +1,13 @@
+import App from '@/main';
+import baseRoutes from "@/router/base";
+import goodsRoutes from "@/router/goods";
+import WebStorage from '@/utils/storage';
 import {RouteRecordRaw} from 'vue-router';
 import {createRouter, createWebHistory} from '@ionic/vue-router';
-import App from '@/main'
-import Tabs from '../views/Tabs.vue'
 
 const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/',
-        redirect: '/home'
-    },
-    {
-        path: '/home',
-        component: () => import('@/views/home/Home.vue')
-    },
-    {
-        path: '/goods-list',
-        component: () => import('@/views/goods-manage/goods-list/GoodsList.vue')
-    },
-    {
-        path: '/login',
-        component: () => import('@/views/login/Login.vue')
-    },
-    {
-        path: '/image-cropper',
-        component: () => import('@/views/image-cropper/ImageCropper.vue')
-    }
-    // {
-    //     path: '/tabs/',
-    //     component: Tabs,
-    //     children: [
-    //         {
-    //             path: '',
-    //             redirect: 'tab1'
-    //         },
-    //         {
-    //             path: 'tab1',
-    //             component: () => import('@/views/Tab1.vue')
-    //         },
-    //         {
-    //             path: 'tab2',
-    //             component: () => import('@/views/Tab2.vue')
-    //         },
-    //         {
-    //             path: 'tab3',
-    //             component: () => import('@/views/Tab3.vue')
-    //         }
-    //     ]
-    // }
+    ...baseRoutes,
+    ...goodsRoutes,
 ]
 
 const router = createRouter({
@@ -58,8 +20,12 @@ router.beforeEach(async (to, from, next) => {
     await App.config.globalProperties.$hideAlert();
     await App.config.globalProperties.$hideLoading();
     await App.config.globalProperties.$hideActionSheet();
-
-    next();
+    const token = await WebStorage.getItem('token');
+    if (!token && to.path.indexOf('/login') === -1) {
+        next('/login');
+    } else {
+        next();
+    }
 });
 
 export default router

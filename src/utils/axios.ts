@@ -1,6 +1,7 @@
 import qs from 'qs';
 import App from '@/main';
-import envelopement from "@/api/envelopement";
+import WebStorage from '@/utils/storage';
+import Envelopment from "@/api/envelopement";
 import axios, {AxiosRequestConfig, AxiosError, AxiosResponse} from 'axios';
 
 const Axios: any = axios;
@@ -17,14 +18,14 @@ const CancelToken = Axios.CancelToken;
 let requestName: any;
 
 // 请求前拦截
-const request = (config: AxiosRequestConfig) => {
+const request = async (config: AxiosRequestConfig) => {
     const url: string = config.url as string;
     App.config.globalProperties.$showLoading();
     if (!url.startsWith('http')) {
-        config.url = envelopement.BASE_UEL + config.url;
+        config.url = Envelopment.BASE_UEL + config.url;
     }
-
-    config.headers.token = 'ff6c431816ef98417a20ba3cd53bda28';
+    const token = await WebStorage.getItem('token');
+    config.headers.token = token || '';
     // 得到参数中的 requestName 字段，用于决定下次发起请求，取消对应的 相同字段的请求
     // 如果没有 requestName 就默认添加一个 不同的时间戳
     if (config.method === 'post' && !(config.data instanceof FormData)) {

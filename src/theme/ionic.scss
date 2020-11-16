@@ -8,7 +8,10 @@
   --color: var(--ion-color-white);
   --background: rgba(0,0,0, .8) !important;
 }
-/** 修复下拉刷新icon不显示的问题 **/
-.refresher-pulling, .refresher-refreshing {
-  display: block;
+
+ion-checkbox.small {
+  width: 16px;
+  height: 16px;
+  --size: 30px;
+  margin-right: 7px;
 }

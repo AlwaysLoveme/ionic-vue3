@@ -35,7 +35,7 @@ class Jpush {
     JPushInstance: JPUSH | any;
 
     constructor() {
-        if ((window as any).JPush) {
+        if ((window as any).JPush && isPlatform('hybrid')) {
             this.JPushInstance = ((window as any).JPush as JPUSH);
             this.JPushInstance.setDebugMode(true);
             if (isPlatform('ios')) {
@@ -56,6 +56,7 @@ class Jpush {
 
     // 设置别名
     setAlias(alias: string) {
+        if (!isPlatform('hybrid')) return;
         return new Promise(((resolve, reject) => {
             this.JPushInstance.setAlias({
                 alias,

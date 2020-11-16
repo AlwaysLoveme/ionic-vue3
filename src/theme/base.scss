@@ -1,0 +1,138 @@
+// 超出1行显示省略号
+.ion-line-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// 超出 2.....5 行显示省略号
+@for $i from 0 through 5 {
+  .ion-line-#{$i} {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $i;
+    line-clamp: $i;
+    -webkit-box-orient: vertical;
+  }
+}
+
+// 细边框
+.ion-border-bottom,
+.picker-above-highlight,
+.picker-toolbar.sc-ion-picker-ios {
+  position: relative;
+  border-bottom: none !important;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: auto;
+    left: 0 !important;
+    bottom: 0 !important;
+    right: auto;
+    display: block !important;
+    width: 100%;
+    height: 1px;
+    background: #EBEEF5;
+    transform: scaleY(0.5);
+  }
+}
+
+.ion-border-right {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0 !important;
+    left: auto;
+    bottom: 0 !important;
+    right: 0 !important;
+    display: block !important;
+    width: 1px;
+    height: 100%;
+    background: #e8e8e8;
+    transform: scaleX(0.5);
+  }
+}
+
+.ion-border-top,
+.picker-below-highlight {
+  position: relative;
+  border-top: none !important;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0 !important;
+    left: auto;
+    bottom: auto !important;
+    right: auto !important;
+    display: block !important;
+    width: 100%;
+    height: 1px;
+    background: #e8e8e8;
+    transform: scaleY(0.5);
+  }
+}
+
+// routerLink no outline
+.no-outline {
+  outline: 0;
+}
+
+.ion-flex {
+  display: flex;
+}
+// 定义flex等分
+@for $i from 0 through 12 {
+  .ion-flex-#{$i} {
+    flex: $i;
+  }
+}
+
+// 定义字体(px)单位
+@for $i from 12 to 100 {
+  .ion-font-#{$i} {
+    font-size: $i + px !important;
+  }
+}
+
+// 定义内外边距，历遍1-80
+@for $i from 0 through 80 {
+  // 只要双数和能被5除尽的数
+  @if $i % 2 == 0 or $i % 5 == 0 {
+    // 得出：ion-margin-30或者i-m-30
+    .ion-margin-#{$i}, .ion-m-#{$i} {
+      margin: $i + px!important;
+    }
+
+    // 得出：ion-padding-30或者ion-p-30
+    .ion-padding-#{$i}, .ion-p-#{$i} {
+      padding: $i + px!important;
+    }
+
+    @each $short, $long in l left, t top, r right, b bottom {
+      // 缩写版，结果如： ion-m-l-30
+      // 定义外边距
+      .ion-m-#{$short}-#{$i} {
+        margin-#{$long}: $i + px!important;
+      }
+
+      // 定义内边距
+      .ion-p-#{$short}-#{$i} {
+        padding-#{$long}: $i + px!important;
+      }
+
+      // 完整版，结果如：ion-margin-left-30
+      // 定义外边距
+      .ion-margin-#{$long}-#{$i} {
+        margin-#{$long}: $i + px!important;
+      }
+
+      // 定义内边距
+      .ion-padding-#{$long}-#{$i} {
+        padding-#{$long}: $i + px!important;
+      }
+    }
+  }
+}
